@@ -7,20 +7,20 @@
 
 import SwiftUI
 
+@available(iOS 14, macOS 11.0, *)
 struct SwiftUIView: View {
   var body: some View {
-#if os(iOS)
     Button {
       print("")
     } label: {
       Text("hola mundo")
     }
-#endif
     Text("Hola mundo 2")
 
   }
 }
 
+@available(iOS 14, macOS 11.0, *)
 public struct ParisPrimaryStyle: ButtonStyle {
   var isBlue: Bool
   var enabled = true
@@ -29,7 +29,7 @@ public struct ParisPrimaryStyle: ButtonStyle {
   var maxHeight: CGFloat = 48
 
   var backgroundColor: Color {
-      return enabled ? Color.cyan : Color.white
+      return enabled ? Color.black : Color.white
   }
 
   var foregroundColor: Color {
