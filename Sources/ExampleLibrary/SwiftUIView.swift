@@ -30,8 +30,7 @@ struct SwiftUIView: View {
     } label: {
       Text("hola mundo")
     }
-    Text("Hola mundo 2")
-
+    .buttonStyle(ParisPrimaryStyle())
   }
 }
 
@@ -52,11 +51,11 @@ public struct ParisPrimaryStyle: ButtonStyle {
   }
 
   var backgroundColor: Color {
-      return enabled ? Color.cyanStrong : Color.white
+      return enabled ? Color.cyan : Color.white
   }
 
   var foregroundColor: Color {
-    return enabled ? Color.cyanStrong : .gray
+    return enabled ? Color.white : .gray
   }
 
   public func makeBody(configuration: Configuration) -> some View {
@@ -69,4 +68,10 @@ public struct ParisPrimaryStyle: ButtonStyle {
           .strokeBorder(foregroundColor, lineWidth: 1)
       )
   }
+}
+
+struct SwiftUIView_Previews: PreviewProvider {
+    static var previews: some View {
+      SwiftUIView()
+    }
 }

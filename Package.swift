@@ -19,8 +19,7 @@ let package = Package(
     targets: [
         .target(
           name: "ExampleLibrary",
-          dependencies: [],
-          resources: [.copy("Supporting Files")]
+          dependencies: []
         ),
         .testTarget(
             name: "ExampleLibraryTests",
