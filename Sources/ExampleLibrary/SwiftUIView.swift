@@ -22,6 +22,10 @@ import SwiftUI
 //  }
 //}
 
+public extension Foundation.Bundle {
+  static let modulePackage = Bundle.module
+}
+
 @available(iOS 14, macOS 11.0, *)
 struct SwiftUIView: View {
   var body: some View {

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Color {
+public extension Color {
   // MARK: Complementary group
   /// Complementary Pastel Magenta hex color: #F9E4ED
   static let pastelMagenta = Color("pastel_magenta", bundle: Bundle.module)
