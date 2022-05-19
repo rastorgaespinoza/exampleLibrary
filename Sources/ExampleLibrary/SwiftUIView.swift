@@ -41,7 +41,7 @@ public struct ParisPrimaryStyle: ButtonStyle {
   }
 
   var foregroundColor: Color {
-    return enabled ? Color.white : .gray
+    return enabled ? Color.cyanStrong : .gray
   }
 
   public func makeBody(configuration: Configuration) -> some View {
