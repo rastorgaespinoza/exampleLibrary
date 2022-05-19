@@ -37,7 +37,7 @@ public struct ParisPrimaryStyle: ButtonStyle {
   }
 
   var backgroundColor: Color {
-      return enabled ? Color.black : Color.white
+      return enabled ? Color.cyanStrong : Color.white
   }
 
   var foregroundColor: Color {
