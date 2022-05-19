@@ -22,7 +22,7 @@ struct SwiftUIView: View {
 
 @available(iOS 14, macOS 11.0, *)
 public struct ParisPrimaryStyle: ButtonStyle {
-  var isBlue: Bool
+  var isBlue: Bool = true
   var enabled = true
   var withPadding = true
   var minHeight: CGFloat = 46
