@@ -7,6 +7,21 @@
 
 import SwiftUI
 
+//struct ParisButton: View {
+//  var isLoading = false
+//  var isEnabled = true
+//  var action: () -> Void
+//  var label: () -> Label
+//
+//  var body: some View {
+//    Button(
+//      action: action,
+//      label: label
+//    )
+//      .buttonStyle(ParisPrimaryStyle())
+//  }
+//}
+
 @available(iOS 14, macOS 11.0, *)
 struct SwiftUIView: View {
   var body: some View {
