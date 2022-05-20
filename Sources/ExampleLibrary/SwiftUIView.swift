@@ -67,6 +67,7 @@ public struct ParisButtonStyleWithTap: PrimitiveButtonStyle {
           configuration.trigger()
         }
       }
+      .buttonStyle(ParisPrimaryStyle())
   }
 }
 
