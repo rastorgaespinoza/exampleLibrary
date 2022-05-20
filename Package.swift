@@ -20,7 +20,7 @@ let package = Package(
         .target(
           name: "ExampleLibrary",
           dependencies: [],
-          resources: [.process("SupportFiles")]
+          resources: [.process("Resources")]
         ),
         .testTarget(
             name: "ExampleLibraryTests",

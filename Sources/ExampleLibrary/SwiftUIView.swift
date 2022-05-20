@@ -27,14 +27,29 @@ public extension Foundation.Bundle {
 }
 
 @available(iOS 14, macOS 11.0, *)
-struct SwiftUIView: View {
-  var body: some View {
+public struct SwiftUIView: View {
+  var isPrimary = true
+  @State var isLoading = false
+
+  public init() {
+    isPrimary = true
+  }
+
+  public var body: some View {
     Button {
-      print("")
+      print("hola mundo request")
+      isLoading.toggle()
+      DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        print("hola mundo response")
+        self.isLoading.toggle()
+      }
     } label: {
-      Text("hola mundo")
+      Text("hola mundohola")
+        .customFontBold()
     }
     .buttonStyle(ParisPrimaryStyle())
+    .buttonStyle(DisableTapLoadingStyle(isLoading: $isLoading))
+
   }
 }
 
@@ -42,16 +57,12 @@ struct SwiftUIView: View {
 public struct ParisPrimaryStyle: ButtonStyle {
   var isBlue = true
   var enabled = true
-  var withPadding = true
-  var minHeight: CGFloat = 46
-  var maxHeight: CGFloat = 48
+  var isSmall = true
 
   public init() {
     isBlue = true
     enabled = true
-    withPadding = true
-    minHeight = 46
-    maxHeight = 48
+    isSmall = true
   }
 
   var backgroundColor: Color {
@@ -62,20 +73,83 @@ public struct ParisPrimaryStyle: ButtonStyle {
     return enabled ? Color.white : .gray
   }
 
+  var borderColor: Color {
+    return enabled ? Color.cyan : .gray
+  }
+
+
   public func makeBody(configuration: Configuration) -> some View {
     configuration.label
+      .padding(.vertical, 12)
+      .padding(.horizontal, 20)
+      .if(!isSmall, transform: { view in
+        view.frame(maxWidth: .infinity)
+      })
       .background(backgroundColor)
       .foregroundColor(foregroundColor)
       .cornerRadius(24)
       .overlay(
         RoundedRectangle(cornerRadius: 24)
-          .strokeBorder(foregroundColor, lineWidth: 1)
+          .strokeBorder(borderColor, lineWidth: 1)
       )
+
+  }
+}
+
+extension View {
+    /// Applies the given transform if the given condition evaluates to `true`.
+    /// - Parameters:
+    ///   - condition: The condition to evaluate.
+    ///   - transform: The transform to apply to the source `View`.
+    /// - Returns: Either the original `View` or the modified `View` if the condition is `true`.
+    @ViewBuilder func `if`<Content: View>(_ condition: @autoclosure () -> Bool, transform: (Self) -> Content) -> some View {
+        if condition() {
+            transform(self)
+        } else {
+            self
+        }
+    }
+}
+
+@available(iOS 14, macOS 11.0, *)
+public struct DisableTapLoadingStyle: PrimitiveButtonStyle {
+  @Binding public var isLoading: Bool
+
+  public func makeBody(configuration: Configuration) -> some View {
+    configuration.label.onTapGesture {
+      if !isLoading {
+        configuration.trigger()
+      }
+    }
   }
 }
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
       SwiftUIView()
+        .previewLayout(PreviewLayout.fixed(width: 300, height: 500))
     }
+}
+
+extension View {
+  func customFontBold() -> some View {
+    registerFont(Montserrat.bold.rawValue, fileExtension: "ttf")
+    let font = Font.custom(Montserrat.bold.rawValue, size: 14)
+    return self.font(font)
+  }
+}
+
+enum Montserrat: String {
+  case bold = "Montserrat-Bold"
+}
+
+func registerFont(_ name: String, fileExtension: String) {
+    guard let fontURL = Bundle.module.url(forResource: name, withExtension: fileExtension) else {
+        print("No font named \(name).\(fileExtension) was found in the module bundle")
+        return
+    }
+
+    var error: Unmanaged<CFError>?
+    CTFontManagerRegisterFontsForURL(fontURL as CFURL, .process, &error)
+    print(error ?? "Successfully registered font: \(name)")
 }
