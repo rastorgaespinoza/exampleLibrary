@@ -60,17 +60,13 @@ public struct ParisButtonStyleWithTap: PrimitiveButtonStyle {
     self._isLoading = isLoading
   }
 
-  public func makeBody(configuration: Configuration) -> some View {
-    return makeButton(configuration: configuration)
+  public func makeBody(configuration: Configuration) -> some View { 
     Button(configuration)
       .onTapGesture {
         if !isLoading {
           configuration.trigger()
         }
       }
-  }
-
-  func makeButton(configuration: Configuration) -> some View {
   }
 }
 
