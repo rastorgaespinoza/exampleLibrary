@@ -53,6 +53,24 @@ public struct SwiftUIView: View {
   }
 }
 
+public struct ParisButtonStyleWithTap: PrimitiveButtonStyle {
+  @Binding private var isLoading: Bool
+
+  public init(isLoading: Binding<Bool>) {
+    self._isLoading = isLoading
+  }
+
+  public func makeBody(configuration: Configuration) -> some View {
+    Button(configuration)
+      .onTapGesture {
+        if !isLoading {
+          configuration.trigger()
+        }
+      }
+      .buttonStyle(ParisPrimaryStyle())
+  }
+}
+
 @available(iOS 14, macOS 11.0, *)
 public struct ParisPrimaryStyle: ButtonStyle {
   var isBlue = true
@@ -113,7 +131,7 @@ extension View {
 
 @available(iOS 14, macOS 11.0, *)
 public struct DisableTapLoadingStyle: PrimitiveButtonStyle {
-  @Binding private var isLoading: Bool
+  @Binding var isLoading: Bool
 
   public init(isLoading: Binding<Bool>) {
     self._isLoading = isLoading
