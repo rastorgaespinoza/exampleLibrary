@@ -61,13 +61,16 @@ public struct ParisButtonStyleWithTap: PrimitiveButtonStyle {
   }
 
   public func makeBody(configuration: Configuration) -> some View {
-    configuration.label
+    return makeButton(configuration: configuration)
+    Button(configuration)
       .onTapGesture {
         if !isLoading {
           configuration.trigger()
         }
       }
-      .buttonStyle(ParisPrimaryStyle())
+  }
+
+  func makeButton(configuration: Configuration) -> some View {
   }
 }
 
