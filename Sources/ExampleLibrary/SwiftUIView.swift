@@ -113,7 +113,11 @@ extension View {
 
 @available(iOS 14, macOS 11.0, *)
 public struct DisableTapLoadingStyle: PrimitiveButtonStyle {
-  @Binding public var isLoading: Bool
+  @Binding private var isLoading: Bool
+
+  public init(isLoading: Binding<Bool>) {
+    self._isLoading = isLoading
+  }
 
   public func makeBody(configuration: Configuration) -> some View {
     configuration.label.onTapGesture {
