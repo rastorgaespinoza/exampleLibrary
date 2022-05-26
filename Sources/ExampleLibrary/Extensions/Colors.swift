@@ -51,6 +51,9 @@ public extension Color {
   static let cyan = Color("cyan_paris", bundle: Bundle.module)
   /// Primary Cyan strong hex color: #0057CB
   static let cyanStrong = Color("cyan_strong", bundle: Bundle.module)
+  /// Primary Cyan animation hex color: ##90C0FF
+  static let cyanAnimation = Color("cyan_animation", bundle: Bundle.module)
+
 
   // MARK: Secondary group
   /// Secondary Indigo hex color: #00355B
