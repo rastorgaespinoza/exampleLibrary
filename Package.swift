@@ -15,13 +15,13 @@ let package = Package(
             targets: ["ExampleLibrary"]),
     ],
     dependencies: [
-//      .package(url: "https://github.com/airbnb/lottie-ios.git", from: "3.0.0"),
+        .package(name: "Lottie", url: "https://github.com/airbnb/lottie-ios.git", from: "3.0.0"),
     ],
     targets: [
         .target(
           name: "ExampleLibrary",
-          dependencies: [],
-          resources: [.process("Resources")]
+          dependencies: ["Lottie"]
+//          resources: [.process("Resources")]
         ),
         .testTarget(
             name: "ExampleLibraryTests",
