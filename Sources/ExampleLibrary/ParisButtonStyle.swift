@@ -27,19 +27,12 @@ public struct ParisButtonStyle: PrimitiveButtonStyle {
       }
     }) {
       if isLoading {
-#if canImport(UIKit)
+        #if canImport(UIKit)
         LottieView(filename: "loading-button", show: .constant(true))
         #else
         ProgressView()
           .progressViewStyle(CircularProgressViewStyle(tint: style.foregroundColor))
         #endif
-
-//        #if os(iOS)
-//          LottieView(filename: "loading-button", show: .constant(true))
-//        #elseif
-//          ProgressView()
-//            .progressViewStyle(CircularProgressViewStyle(tint: style.foregroundColor))
-//        #endif
       } else {
         configuration.label
       }
