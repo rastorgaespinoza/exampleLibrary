@@ -8,7 +8,7 @@
 import Combine
 import SwiftUI
 
-@available(iOS 13.0, macOS 12, tvOS 13.0, watchOS 6.0, *)
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 struct LoadingDotsBouncing: View {
   @State var counter = 0
   let numberOfDots: Int
@@ -34,9 +34,7 @@ struct LoadingDotsBouncing: View {
     Color.clear
       .aspectRatio(2.5, contentMode: .fit)
       .padding(.vertical, 12)
-      .overlay {
-        bouncingDots
-      }
+      .overlay (bouncingDots)
 
   }
 
