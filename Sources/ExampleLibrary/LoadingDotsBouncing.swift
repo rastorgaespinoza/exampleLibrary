@@ -33,8 +33,8 @@ struct LoadingDotsBouncing: View {
   var body: some View {
     Color.clear
       .aspectRatio(2.5, contentMode: .fit)
-      .padding(.vertical, 12)
-      .overlay (bouncingDots)
+//      .padding(.vertical, 12)
+      .overlay(bouncingDots)
 
   }
 

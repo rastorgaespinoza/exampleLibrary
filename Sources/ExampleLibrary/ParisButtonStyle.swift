@@ -45,16 +45,18 @@ public struct ParisButtonStyle: PrimitiveButtonStyle {
 #if DEBUG
 struct ButtonStyles_Previews: PreviewProvider {
   static var previews: some View {
-    VStack {
-      primaryGroup
+    ScrollView {
+      VStack {
+        primaryGroup
 
-      Divider()
+        Divider()
 
-      secondaryGroup
+        secondaryGroup
 
-      Divider()
+        Divider()
 
-      outlineGroup
+        outlineGroup
+      }
     }
   }
 
